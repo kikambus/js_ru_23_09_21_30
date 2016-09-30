@@ -13,7 +13,7 @@ export default class CommentList extends Component {
 
 		let btnText = 'Show comments';
 		let comments = null;
-
+		//все хорошо, но стоит добавить проверку наличия комментов, иначе будет Exception
 		if (showComment) {
 			comments = commentList.map(comment => <li key={comment.id}><CommentItem comment = {comment} /></li>);
 			btnText = 'Hide Comment Text';
