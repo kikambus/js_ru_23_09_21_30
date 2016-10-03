@@ -15,6 +15,7 @@ export default function toggleOpen(Component) {
         }
 
         render() {
+            console.log(toggleOpen);
             return <Component {...this.props} {...this.state} toggleOpen = {this.toggleOpen}/>
         }
     }
