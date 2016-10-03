@@ -1,23 +1,38 @@
-import React, { Component } from 'react';
-import CommentList from './CommentList.js';
+import React, { Component, PropTypes } from 'react'
+import CommentList from './CommentList'
 
 export default class Article extends Component {
+    static defaultProps = {
+        article: PropTypes.array // я что меняю тип проптайпса, что не меняю ни чего не происходит, где я провтыкал?
+    }
+    componentWillMount() {
+        console.log('---', 'mounting')
+    }
+
+    componentDidMount() {
+        console.log('---', 'mounted')
+    }
+
+    componentWillUnmount() {
+        console.log('---', 'unmounting')
+    }
 
     constructor(props) {
         super()
         this.state = {
-            isOpen: false
+            foo: 'bar'
         }
     }
 
     render() {
-        const { article } = this.props;
-        const { isOpen } = this.state;
+        const { article, isOpen, openArticle } = this.props
+        const body = isOpen ? <section>{article.text}<CommentList comments = {article.comments} /></section> : null
 
-        const body = isOpen ? <section>{article.text}<CommentList commentList = {article.comments} xxx="xxx"/></section> : null;
+
+        // <section style = {{display: isOpen ? 'block' : 'none'}}>{article.text}</section>
         return (
             <div>
-                <h3 onClick = {this.toggleOpen}>{article.title}</h3>
+                <h3 onClick = {openArticle}>{article.title}</h3>
                 {body}
             </div>
         )
@@ -26,17 +41,6 @@ export default class Article extends Component {
     toggleOpen = ev => {
         this.setState({
             isOpen: !this.state.isOpen
-        });
+        })
     }
 }
-
-/*
-export default (props) => {
-    const { article } = props
-    return (
-        <div>
-            <h3>{article.title}</h3>
-            <section>{article.text}</section>
-        </div>
-    )
-}*/

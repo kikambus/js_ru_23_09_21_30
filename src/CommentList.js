@@ -1,37 +1,27 @@
-import React, { Component } from 'react';
-import CommentItem from './CommentItem.js';
+import React, { Component, PropTypes } from 'react'
+import Comment from './Comment'
+import toggleOpen from './decorators/toggleOpen'
 
-export default class CommentList extends Component {
-	
-	state = {
-		showComment: false
-	}
+function CommentList(props) {
+    const { comments, isOpen, toggleOpen } = props
+    if (!comments || !comments.length) return <p>No comments yet</p>      
 
-	render() {
-		const { commentList } = this.props;
-		const { showComment } = this.state;
+    const commentItems = comments.map(comment => <li key={comment.id}><Comment comment={comment}/></li>)
+    const text = isOpen ? 'hide comments' : `show ${comments.length} comments`
+    const body = isOpen && <ul>{commentItems}</ul>
 
-		let btnText = 'Show comments';
-		let comments = null;
-		//все хорошо, но стоит добавить проверку наличия комментов, иначе будет Exception
-		if (showComment) {
-			comments = commentList.map(comment => <li key={comment.id}><CommentItem comment = {comment} /></li>);
-			btnText = 'Hide Comment Text';
-		}
-
-		return (
-			<div>
-				<div className="btn" onClick = {this.toggleOpen}><strong>{btnText}</strong></div>
-				<ul>
-					{comments}
-				</ul>
-			</div>
-		)
-	}
-
-	toggleOpen = ev => {
-        this.setState({
-            showComment: !this.state.isOpen
-        });
-    }
+    return (
+        <div>
+            <a href="#" onClick={toggleOpen}>{text}</a>
+            {body}
+        </div>
+    )
 }
+
+CommentList.propTypes = {
+    comments: PropTypes.array,
+    //isOpen: PropTypes.func,     // возвращает boolean, пишет что это функция, когда ставлю .func - ошибка, почему? Потому что не props, верно?
+    toggleOpen: PropTypes.func
+};
+
+export default toggleOpen(CommentList)
