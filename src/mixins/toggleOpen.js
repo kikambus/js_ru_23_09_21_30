@@ -4,7 +4,7 @@ export default {
             isOpen: false
         }
     },
-    toggleOpen(ev)  {
+    toggleOpen(ev) {
         ev.preventDefault()
         this.setState({
             isOpen: !this.state.isOpen
