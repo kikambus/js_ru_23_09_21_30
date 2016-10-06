@@ -33,16 +33,16 @@ class Calendar extends Component {
 		let firstDate = '';
 		let lastDate = '';
 
-		if (from) {
-			firstDate = moment(from).format('L');
-		} else {
+		if (!from) {
 			firstDate = 'Enter Date';
+		} else {
+			firstDate = moment(from).format('L');
 		}
 
-		if (to) {
-			lastDate = moment(to).format('L');
-		} else {
+		if (!to) {
 			lastDate = 'Enter Date';
+		} else {
+			lastDate = moment(to).format('L');
 		}
 
 		return (
