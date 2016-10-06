@@ -2,6 +2,8 @@ import React, { Component, PropTypes } from 'react';
 import { render } from 'react-dom';
 
 class CommentForm extends Component {
+	
+	// я всё правильно понимаю, что тут проптайпсов нет и это можно не писать?
 	static propType = {
 
 	}
