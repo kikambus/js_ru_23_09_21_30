@@ -21,7 +21,6 @@ class CommentForm extends Component {
 	handleChangeName = this.handleChange('name');
 	handleChangeMessage = this.handleChange('message');
 
-
 	handleSend = ev => {
 		let userName = this.state.name;
 		let userMessage = this.state.message;
