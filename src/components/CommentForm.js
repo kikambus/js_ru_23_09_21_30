@@ -4,6 +4,7 @@ import { render } from 'react-dom';
 class CommentForm extends Component {
 	
 	// я всё правильно понимаю, что тут проптайпсов нет и это можно не писать?
+	// да, но я обычно оставляю, чтоб видеть что сюда ничего передавать не надо
 	static propType = {
 
 	}
